@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #080808;
+    --bg-editorial: #f7f5f0;
+    --text: #ffffff;
+    --gold: #c6aa72;
+    --gold-deep: #b3965d;
+    --gold-soft: rgba(198, 170, 114, 0.14);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+
+  ::selection {
+    background: rgba(198, 170, 114, 0.28);
+    color: #fff;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+@layer components {
+  .font-serif-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+  }
+
+  .font-body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Display headings with optical refinement */
+  .display-1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+  }
+  .display-2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    line-height: 1.04;
+  }
+  .display-3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+  }
+
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold) 50%,
+      transparent
+    );
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .gold-text {
+    color: var(--gold);
+  }
+
+  /* Numerical eyebrow used in editorial framing */
+  .index-mark {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Premium frosted-glass surface — used where imagery sits behind the card. */
+  .glass-card {
+    background: linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.018) 100%
+    );
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* A denser glass for solid sections — richer frost, finer grain. */
+  .glass-card-solid {
+    background: linear-gradient(
+      165deg,
+      rgba(20, 20, 20, 0.6) 0%,
+      rgba(10, 10, 10, 0.4) 100%
+    );
+    backdrop-filter: blur(24px) saturate(1.15);
+    -webkit-backdrop-filter: blur(24px) saturate(1.15);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Soft gold outline rendered as a gradient ring — the signature border. */
+  .border-gold-soft {
+    border: 1px solid rgba(198, 170, 114, 0.18);
+  }
+
+  /* The handcrafted hover language: lift, gold ring, layered luxury shadow. */
+  .hover-lux {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .hover-lux:hover {
+    border-color: rgba(198, 170, 114, 0.38);
+    box-shadow: 0 0 0 1px rgba(198, 170, 114, 0.1),
+      0 48px 100px -30px rgba(198, 170, 114, 0.22),
+      0 24px 60px -24px rgba(0, 0, 0, 0.6);
+    transform: translateY(-7px);
+  }
+
+  /* Lighter lift for cells that should not fly as far. */
+  .hover-lift {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Backwards-compat alias for existing markup. */
+  .hover-glow {
+    @apply hover-lux;
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 20%,
+      black 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 20%,
+      black 100%
+    );
+  }
+
+  /* Film-grain overlay for cinematic texture */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .text-shadow-luxury {
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .edge-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+
+  /* Top sheen line that catches light on glass cards. */
+  .card-sheen {
+    position: relative;
+  }
+  .card-sheen::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.12) 50%,
+      transparent
+    );
+    pointer-events: none;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(198, 170, 114, 0.25);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 170, 114, 0.45);
+}
+
+/* Select dropdown reset for dark theme */
+select option {
+  background: #0d0d0d;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
